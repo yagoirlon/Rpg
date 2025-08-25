@@ -7,17 +7,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
       - name: Baixar Godot
         run: |
           wget https://downloads.tuxfamily.org/godotengine/3.5.2/Godot_v3.5.2-stable_linux_headless.64.zip
           unzip Godot_v3.5.2-stable_linux_headless.64.zip
           mv Godot_v3.5.2-stable_linux_headless.64 godot
+
       - name: Exportar APK
         run: |
           mkdir -p builds/android
           ./godot --headless --path . --export-debug "Android" "builds/android/EldergroveChronicles.apk"
-      - uses: actions/upload-artifact@v3
+
+      - uses: actions/upload-artifact@v4
         with:
           name: Eldergrove-Android
           path: builds/android/EldergroveChronicles.apk
